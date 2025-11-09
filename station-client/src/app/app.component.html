@@ -1,0 +1,17 @@
+<!-- src/app/app.component.html -->
+
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/stations"></a>
+
+    <div>
+      <a routerLink="/stations" class="btn btn-outline-light me-2"></a>
+      <a routerLink="/stations/add" class="btn btn-outline-success"></a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- ICI Angular affichera les composants selon la route -->
+  <router-outlet></router-outlet>
+</div>

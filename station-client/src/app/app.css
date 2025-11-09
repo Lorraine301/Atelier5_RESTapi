@@ -1,0 +1,9 @@
+/* src/app/app.css */
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}

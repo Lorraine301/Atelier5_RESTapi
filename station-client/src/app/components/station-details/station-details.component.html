@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <button class="btn btn-secondary mb-3" (click)="backToList()">← Retour</button>
+
+  <div class="card shadow-sm p-3 mb-4">
+    <h3 class="text-center">Détails de la Station</h3>
+    <p><strong>Nom :</strong> {{ station?.nom }}</p>
+    <p><strong>Adresse :</strong> {{ station?.adresse }}</p>
+    <p><strong>Ville :</strong> {{ station?.ville }}</p>
+  </div>
+
+  <h4>Carburants disponibles et prix journaliers</h4>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Prix (DH)</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of histoCarburants">
+      <td>{{ item.carburantNom }}</td>
+      <td>{{ item.carburantDescription }}</td>
+      <td>{{ item.date }}</td>
+      <td>{{ item.prix | number:'1.2-2' }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm" (click)="modifierPrix(item)">Modifier</button>
+        <button class="btn btn-danger btn-sm" (click)="supprimerCarburant(item.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="histoCarburants.length === 0" class="text-center text-muted">
+    Aucun carburant enregistré pour cette station.
+  </div>
+
+  <hr class="my-4" />
+
+  <div class="card p-4 add-section">
+    <h5>+ Ajouter un nouveau carburant</h5>
+    <div class="form-group mb-3">
+      <label>Carburant :</label>
+      <select class="form-select" [(ngModel)]="nouveauCarburantId">
+        <option value="0" disabled selected>-- Sélectionner --</option>
+        <option *ngFor="let carb of carburantsDisponibles" [value]="carb.id">{{ carb.nom }}</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label>Prix du jour (DH) :</label>
+      <input type="number" step="0.01" class="form-control" [(ngModel)]="nouveauCarburantPrix" />
+    </div>
+    <button class="btn btn-primary" (click)="ajouterCarburant()">Ajouter</button>
+  </div>
+</div>
